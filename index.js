@@ -157,9 +157,7 @@ displaySearchList = () => {
 
 // on clicking outside of search list, list disappears
 document.addEventListener("click", (e) => {
-  if (searchList.contains(e.target)) {
-    e.stopPropagation();
-  } else {
+  if (!searchList.contains(e.target)) {
     searchList.innerHTML = "";
   }
 });
