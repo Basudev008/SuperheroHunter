@@ -12,7 +12,7 @@ export function displayFavouriteList() {
   var hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 
   // if favourites has no superhero, display below message
-  if (superHeroArray.length == 0) {
+  if (!superHeroArray || superHeroArray.length == 0) {
     supermanList.innerHTML =
       "<div style='color:white ; font-size: 2rem'>No Favourites Selected. Go to Home!!!</div>";
   }

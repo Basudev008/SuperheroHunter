@@ -89,12 +89,18 @@ if (superheroInfo) {
 
     // if the superhero is already present, remove it
     // else push in the favourites array
-    if (favouritesArray.includes(id)) {
-      favBtn.innerText = "Add to favourite";
-      favouritesArray.splice(favouritesArray.indexOf(id), 1);
+    if (favouritesArray) {
+      if (favouritesArray.includes(id)) {
+        favBtn.innerText = "Add to favourite";
+        favouritesArray.splice(favouritesArray.indexOf(id), 1);
+      } else {
+        favBtn.innerText = "Favourite";
+        favouritesArray.push(id);
+      }
     } else {
-      favBtn.innerText = "Favourite";
-      favouritesArray.push(id);
+      var array = [];
+      array.push(id);
+      favouritesArray = array;
     }
 
     myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));

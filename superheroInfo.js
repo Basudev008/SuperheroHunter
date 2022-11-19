@@ -100,12 +100,18 @@ export function superheroInfo() {
   function addToFavourite(favBtn, id) {
     var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
     var favBtn = document.querySelector(`.fav-btn${id}`);
-    if (favouritesArray.includes(id)) {
-      favBtn.innerText = "Add to favourite";
-      favouritesArray.splice(favouritesArray.indexOf(id), 1);
+    if (favouritesArray) {
+      if (favouritesArray.includes(id)) {
+        favBtn.innerText = "Add to favourite";
+        favouritesArray.splice(favouritesArray.indexOf(id), 1);
+      } else {
+        favBtn.innerText = "Favourite";
+        favouritesArray.push(id);
+      }
     } else {
-      favBtn.innerText = "Favourite";
-      favouritesArray.push(id);
+      var array = [];
+      array.push(id);
+      favouritesArray = array;
     }
 
     myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));
