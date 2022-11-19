@@ -89,10 +89,12 @@ fetch(
     //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
     // }
 
-    if (!favouritesArray.includes(superHero.id)) {
-      favBtn.innerHTML = "<span>Add to favourite</span>";
-    } else {
-      favBtn.innerHTML = "<span>Favourite</span>";
+    if (favouritesArray) {
+      if (!favouritesArray.includes(superHero.id)) {
+        favBtn.innerHTML = "<span>Add to favourite</span>";
+      } else {
+        favBtn.innerHTML = "<span>Favourite</span>";
+      }
     }
 
     favBtn.addEventListener("click", () =>

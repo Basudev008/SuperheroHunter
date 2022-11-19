@@ -63,10 +63,12 @@ displaySupermanList = () => {
     // }
 
     // if superhero is in favourite array, show Add to favourite, else Favourite
-    if (!favouritesArray.includes(superHeroArray[i].id)) {
-      favBtn.innerHTML = "<span>Add to favourite</span>";
-    } else {
-      favBtn.innerHTML = "<span>Favourite</span>";
+    if (favouritesArray) {
+      if (!favouritesArray.includes(superHeroArray[i].id)) {
+        favBtn.innerHTML = "<span>Add to favourite</span>";
+      } else {
+        favBtn.innerHTML = "<span>Favourite</span>";
+      }
     }
 
     // On clicking the favourite button, it toggles the superhero from the favourites list
