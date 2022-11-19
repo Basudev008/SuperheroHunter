@@ -160,10 +160,12 @@ displaySearchList = () => {
     var favBtn = document.querySelector(`.fav-btn${searchArray[i].id}`);
 
     // if superhero is in favourite array, show Add to favourite, else Favourite
-    if (!favouritesArray.includes(searchArray[i].id)) {
-      favBtn.innerHTML = "<span>Add to favourite</span>";
-    } else {
-      favBtn.innerHTML = "<span>Favourite</span>";
+    if (favouritesArray) {
+      if (!favouritesArray.includes(searchArray[i].id)) {
+        favBtn.innerHTML = "<span>Add to favourite</span>";
+      } else {
+        favBtn.innerHTML = "<span>Favourite</span>";
+      }
     }
 
     var infoBtn = document.querySelector(`.more-info${searchArray[i].id}`);
