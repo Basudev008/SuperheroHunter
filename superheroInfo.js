@@ -9,10 +9,13 @@ var hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 const myLocalStorage = window.localStorage;
 var mySessionStorage = window.sessionStorage;
 
+console.log(myLocalStorage);
+console.log(mySessionStorage);
 var id = myLocalStorage.getItem("superHeroId");
 if (id == null) {
   id = mySessionStorage.getItem("superHeroId");
 }
+console.log(id);
 
 // fetch details based on superheroId stored in the local storage
 fetch(
