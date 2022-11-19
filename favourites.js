@@ -1,13 +1,13 @@
 var myLocalStorage = window.localStorage;
-var mySessionStorage = window.sessionStorage;
+// var mySessionStorage = window.sessionStorage;
 
 const supermanList = document.querySelector(".superman-list");
 
 // parse favourites array from local storage
 var superHeroArray = JSON.parse(myLocalStorage.getItem("favourites"));
-if (superHeroArray == null) {
-  superHeroArray = JSON.parse(mySessionStorage.getItem("favourites"));
-}
+// if (superHeroArray == null) {
+//   superHeroArray = JSON.parse(mySessionStorage.getItem("favourites"));
+// }
 
 const privateKey = "ea4f058f612d212db5b39008fb16628d27feddd9";
 const publicKey = "733cf07fb5580c774570e2a74cec5659";
@@ -67,9 +67,9 @@ async function displayFavourite(id) {
 
 function removeFromFavourite(favBtn, id) {
   var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-  if (favouritesArray == null) {
-    favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-  }
+  // if (favouritesArray == null) {
+  //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
+  // }
   var favBtn = document.querySelector(`.fav-btn${id}`);
   favouritesArray.splice(favouritesArray.indexOf(id), 1);
 
@@ -78,11 +78,11 @@ function removeFromFavourite(favBtn, id) {
 
   // update the local storage
   myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));
-  mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
+  // mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
 }
 
 function addIdToStorage(id) {
   myLocalStorage.setItem("superHeroId", id);
-  mySessionStorage.setItem("superHeroId", id);
+  // mySessionStorage.setItem("superHeroId", id);
   window.location.assign("superheroInfo.html");
 }
