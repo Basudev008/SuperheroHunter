@@ -1,6 +1,5 @@
 export function superheroInfo() {
   const myLocalStorage = window.localStorage;
-  var mySessionStorage = window.sessionStorage;
 
   const privateKey = "ea4f058f612d212db5b39008fb16628d27feddd9";
   const publicKey = "733cf07fb5580c774570e2a74cec5659";
@@ -9,13 +8,7 @@ export function superheroInfo() {
   var hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
   const superheroInfo = document.querySelector(".superhero");
 
-  console.log(myLocalStorage);
-  console.log(mySessionStorage);
   var id = myLocalStorage.getItem("superHeroId");
-  if (id == null) {
-    id = mySessionStorage.getItem("superHeroId");
-  }
-  console.log(id);
   var superHero = [];
 
   // fetch details based on superheroId stored in the local storage
@@ -89,9 +82,6 @@ export function superheroInfo() {
       var favBtn = document.querySelector(`.fav-btn${superHero.id}`);
 
       var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-      if (favouritesArray == null) {
-        favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-      }
 
       if (favouritesArray) {
         if (!favouritesArray.includes(superHero.id)) {
@@ -109,22 +99,15 @@ export function superheroInfo() {
   // addToFavourite function same as index.js
   function addToFavourite(favBtn, id) {
     var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-    if (favouritesArray == null) {
-      favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-    }
     var favBtn = document.querySelector(`.fav-btn${id}`);
     if (favouritesArray.includes(id)) {
       favBtn.innerText = "Add to favourite";
-      console.log(favBtn);
       favouritesArray.splice(favouritesArray.indexOf(id), 1);
     } else {
       favBtn.innerText = "Favourite";
-      console.log(favBtn);
       favouritesArray.push(id);
     }
 
     myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));
-    mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
-    console.log(myLocalStorage.getItem("favourites"));
   }
 }

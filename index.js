@@ -16,18 +16,13 @@ const ts = Date.now().toString();
 var hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 
 var myLocalStorage = window.localStorage;
-var mySessionStorage = window.sessionStorage;
 
-console.log("hello");
-
+// conditional rendering for pages
 if (superheroInfo) {
-  console.log("inside info");
   superInfo.superheroInfo();
 } else if (favouritesList) {
-  console.log("inside favourites");
   favourite.displayFavouriteList();
 } else {
-  console.log("Inside home");
   var superHeroArray = [];
   // variable initialized with local storage
 
@@ -71,9 +66,6 @@ if (superheroInfo) {
 
       var favBtn = document.querySelector(`.fav-btn${superHeroArray[i].id}`);
       var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-      if (favouritesArray == null) {
-        favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-      }
 
       // if superhero is in favourite array, show Add to favourite, else Favourite
       if (favouritesArray) {
@@ -93,32 +85,25 @@ if (superheroInfo) {
 
   function addToFavourite(favBtn, id) {
     var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-    if (favouritesArray == null) {
-      favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-    }
     var favBtn = document.querySelector(`.fav-btn${id}`);
 
     // if the superhero is already present, remove it
     // else push in the favourites array
     if (favouritesArray.includes(id)) {
       favBtn.innerText = "Add to favourite";
-      console.log(favBtn);
       favouritesArray.splice(favouritesArray.indexOf(id), 1);
     } else {
       favBtn.innerText = "Favourite";
-      console.log(favBtn);
       favouritesArray.push(id);
     }
 
     myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));
-    mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
     searchBox.value = "";
   }
 
   // function to add id of superhero clicked for more info
   function addIdToStorage(id) {
     myLocalStorage.setItem("superHeroId", `${id}`);
-    mySessionStorage.setItem("superHeroId", `${id}`);
     window.location.assign("superheroInfo.html");
     searchBox.value = "";
   }
@@ -138,8 +123,6 @@ if (superheroInfo) {
         .then((response) => response.json())
         .then((data) => {
           searchArray = data.data.results;
-          console.log(data.data.results);
-
           displaySearchList();
         });
     } else {
@@ -168,9 +151,6 @@ if (superheroInfo) {
       searchList.appendChild(supermanComponent);
 
       var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-      if (favouritesArray == null) {
-        favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-      }
 
       var favBtn = document.querySelector(`.fav-btn${searchArray[i].id}`);
 
