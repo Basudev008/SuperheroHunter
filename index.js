@@ -12,7 +12,7 @@ var hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 
 // variable initialized with local storage
 var myLocalStorage = window.localStorage;
-//var mySessionStorage = window.sessionStorage;
+var mySessionStorage = window.sessionStorage;
 
 var superHeroArray = [];
 
@@ -58,9 +58,9 @@ displaySupermanList = () => {
 
     var favBtn = document.querySelector(`.fav-btn${superHeroArray[i].id}`);
     var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-    // if (favouritesArray == null) {
-    //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-    // }
+    if (favouritesArray == null) {
+      favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
+    }
 
     // if superhero is in favourite array, show Add to favourite, else Favourite
     if (favouritesArray) {
@@ -80,9 +80,9 @@ displaySupermanList = () => {
 
 function addToFavourite(favBtn, id) {
   var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-  // if (favouritesArray == null) {
-  //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-  // }
+  if (favouritesArray == null) {
+    favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
+  }
   var favBtn = document.querySelector(`.fav-btn${id}`);
 
   // if the superhero is already present, remove it
@@ -98,14 +98,14 @@ function addToFavourite(favBtn, id) {
   }
 
   myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));
-  // mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
+  mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
   searchBox.value = "";
 }
 
 // function to add id of superhero clicked for more info
 function addIdToStorage(id) {
   myLocalStorage.setItem("superHeroId", `${id}`);
-  // mySessionStorage.setItem("superHeroId", `${id}`);
+  mySessionStorage.setItem("superHeroId", `${id}`);
   window.location.assign("superheroInfo.html");
   searchBox.value = "";
 }
@@ -155,9 +155,9 @@ displaySearchList = () => {
     searchList.appendChild(supermanComponent);
 
     var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-    // if (favouritesArray == null) {
-    //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-    // }
+    if (favouritesArray == null) {
+      favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
+    }
 
     var favBtn = document.querySelector(`.fav-btn${searchArray[i].id}`);
 

@@ -7,12 +7,12 @@ const ts = Date.now().toString();
 var hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 
 const myLocalStorage = window.localStorage;
-// var mySessionStorage = window.sessionStorage;
+var mySessionStorage = window.sessionStorage;
 
 var id = myLocalStorage.getItem("superHeroId");
-// if (id == null) {
-//   id = mySessionStorage.getItem("superHeroId");
-// }
+if (id == null) {
+  id = mySessionStorage.getItem("superHeroId");
+}
 
 // fetch details based on superheroId stored in the local storage
 fetch(
@@ -85,9 +85,9 @@ fetch(
     var favBtn = document.querySelector(`.fav-btn${superHero.id}`);
 
     var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-    // if (favouritesArray == null) {
-    //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-    // }
+    if (favouritesArray == null) {
+      favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
+    }
 
     if (favouritesArray) {
       if (!favouritesArray.includes(superHero.id)) {
@@ -105,9 +105,9 @@ fetch(
 // addToFavourite function same as index.js
 function addToFavourite(favBtn, id) {
   var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-  // if (favouritesArray == null) {
-  //   favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
-  // }
+  if (favouritesArray == null) {
+    favouritesArray = JSON.parse(mySessionStorage.getItem("favourites"));
+  }
   var favBtn = document.querySelector(`.fav-btn${id}`);
   if (favouritesArray.includes(id)) {
     favBtn.innerText = "Add to favourite";
@@ -120,6 +120,6 @@ function addToFavourite(favBtn, id) {
   }
 
   myLocalStorage.setItem("favourites", JSON.stringify(favouritesArray));
-  // mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
+  mySessionStorage.setItem("favourites", JSON.stringify(favouritesArray));
   console.log(myLocalStorage.getItem("favourites"));
 }
