@@ -35,15 +35,6 @@ export function superheroInfo() {
         <div class='urls'><h4>Urls</h4><ul></ul></div>
     <div>`;
 
-      var favouritesArray = JSON.parse(myLocalStorage.getItem("favourites"));
-
-      var favBtn = document.querySelector(`.fav-btn${superHero.id}`);
-      if (!favouritesArray.includes(superHero.id)) {
-        favBtn.innerHTML = "<span>Add to favourite</span>";
-      } else {
-        favBtn.innerHTML = "<span>Favourite</span>";
-      }
-
       var comicsInfo = document.querySelector(".comics ul");
       for (let i = 0; i < superHero.comics.items.length; i++) {
         const listElement = document.createElement("li");
