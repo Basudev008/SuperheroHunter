@@ -19,8 +19,6 @@ export function displayFavouriteList() {
 
   // iterate over superHero array and display each superhero
   for (let i = 0; i < superHeroArray.length; i++) {
-    var supermanComponent = document.createElement("div");
-    supermanComponent.className = "superman-card";
     displayFavourite(superHeroArray[i]);
   }
 
